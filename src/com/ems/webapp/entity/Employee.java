@@ -1,6 +1,7 @@
 package com.ems.webapp.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,10 +37,9 @@ public class Employee {
 	@Column(name="dept")
 	private String dept;
 	
-	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinTable(name="employee_project", 
-	joinColumns=@JoinColumn(name="emp_id"),inverseJoinColumns=@JoinColumn(name="project_id"))
-	private List<Project> projects;
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="emp_id")
+	private Set<Project> projects;
 	
 
 	// default and parameterized constructor
@@ -93,11 +94,11 @@ public class Employee {
 		this.dept = dept;
 	}
 
-	public List<Project> getProjects() {
+	public Set<Project> getProjects() {
 		return projects;
 	}
 
-	public void setProjects(List<Project> projects) {
+	public void setProjects(Set<Project> projects) {
 		this.projects = projects;
 	}
 	

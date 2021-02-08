@@ -3,7 +3,9 @@ package com.ems.webapp.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,8 +54,7 @@ public class AddEmployeeWithProject extends HttpServlet {
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String salary = request.getParameter("salary");
-		String dept = request.getParameter("dept");
-		
+		String dept = request.getParameter("dept");	
 		
 		
 		String P1Name = request.getParameter("project1-name");
@@ -71,9 +72,9 @@ public class AddEmployeeWithProject extends HttpServlet {
 		// 3. create entity object
 		Employee employee = new Employee(firstName, lastName, Double.parseDouble(salary), dept);
 		
-		List<Project> projects = new ArrayList<>();
-		Project p1 = new Project(P1Name, P1No);
-		Project p2 = new Project(P2Name, P2No);
+		Set<Project> projects = new HashSet();
+		Project p1 = new Project( P1No,P1Name);
+		Project p2 = new Project( P2No,P2Name);
 		projects.add(p1);
 		projects.add(p2);
 		
