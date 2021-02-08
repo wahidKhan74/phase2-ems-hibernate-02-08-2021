@@ -1,10 +1,13 @@
 package com.ems.webapp.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +30,11 @@ public class Employee {
 	
 	@Column(name="dept")
 	private String dept;
+	
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="emp_id")
+	private Payroll payroll;
 
 	// default and parameterized constructor
 	public Employee() {	}
@@ -79,6 +87,13 @@ public class Employee {
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
-	
+
+	public Payroll getPayroll() {
+		return payroll;
+	}
+
+	public void setPayroll(Payroll payroll) {
+		this.payroll = payroll;
+	}
 	
 }
